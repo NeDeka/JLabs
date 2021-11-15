@@ -9,14 +9,12 @@ public class Apple extends Food {
     public void consume() {
         System.out.println(this + " съедено");
     }
-
     public String getSize() {
         return size;
     }
     public void setSize(String size) {
         this.size = size;
     }
-
     public boolean equals(Object arg0) {
         if (super.equals(arg0)) { // Шаг 1
             if (!(arg0 instanceof Apple)) return false; // Шаг 2

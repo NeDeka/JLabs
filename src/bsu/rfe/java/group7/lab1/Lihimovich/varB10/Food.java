@@ -13,7 +13,6 @@ public abstract class Food implements Consumable,Nutritious {
     public String toString() {
         return name;
     }
-
     public String getName() {
         return name;
     }

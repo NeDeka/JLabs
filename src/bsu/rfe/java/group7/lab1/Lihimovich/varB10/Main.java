@@ -11,23 +11,22 @@ public class Main {
         boolean sort_needed = false, calories_needed = false;
         int cheeseN = 0, LimanadN = 0, appleN = 0;
 
-        for (int i = 0; i < args.length; i++){
+        for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-calories"))
                 calories_needed = true;
             if (args[i].equals("-sort"))
                 sort_needed = true;
-            else{
+            else {
                 String[] parts = args[i].split("/");
                 if (parts[0].equals("Сыр")) {
                     breakfast[itemsSoFar] = new Cheese();
                     cheeseN++;
                     itemsSoFar++;
-                } else
-                if (parts[0].equals("Яблоко")) {
+                } else if (parts[0].equals("Яблоко")) {
                     breakfast[itemsSoFar] = new Apple(parts[1]);
                     appleN++;
                     itemsSoFar++;
-                }else if(parts[0].equals("Лимонад")) {
+                } else if (parts[0].equals("Лимонад")) {
                     breakfast[itemsSoFar] = new Limonad(parts[1]);
                     LimanadN++;
                     itemsSoFar++;
@@ -45,8 +44,25 @@ public class Main {
                 calories += breakfast[i].calculateCalories();
             System.out.println("\nОбщая калорийность завтрака: " + calories + "ккал");
         }
-        if (sort_needed) {
-            Arrays.sort(breakfast, new FoodComparator());
+        if(sort_needed) {
+            Arrays.sort(breakfast, new Comparator() {
+                public int compare(Object f1, Object f2) {
+                    if(f1 instanceof  Limonad && f2 instanceof Limonad){
+                        if (f1==null) return 1;
+                        if (f2==null) return -1;
+                        return ((Limonad)f1).getTaste().compareTo(((Limonad)f2).getTaste());
+                    }if(f1 instanceof  Limonad && f2 instanceof Apple){
+                        if (f1==null) return 1;
+                        if (f2==null) return -1;
+                        return ((Limonad)f1).getTaste().compareTo(((Apple)f2).getSize());
+                    }if(f1 instanceof  Apple && f2 instanceof Apple){
+                        if (f1==null) return 1;
+                        if (f2==null) return -1;
+                        return ((Apple)f1).getSize().compareTo(((Apple)f2).getSize());
+                    }
+                    return -1;
+                }
+            });
         }
 
         System.out.println("\nКол-во яблок:" + " " + appleN);

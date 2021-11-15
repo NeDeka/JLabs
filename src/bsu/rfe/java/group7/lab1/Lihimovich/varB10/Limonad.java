@@ -10,8 +10,8 @@ public class Limonad extends Food {
         System.out.println(this + " выпит");
     }
     public void setTaste(String taste){
-        this.taste = taste;
-    }
+            this.taste = taste;
+        }
     public String getTaste()
     {
         return taste;
@@ -24,7 +24,7 @@ public class Limonad extends Food {
             {
                 calories+=36;
             }
-            else if(taste.equals("клубнмка"))
+            else if(taste.equals("клубника"))
             {
                 calories+=41;
             }
