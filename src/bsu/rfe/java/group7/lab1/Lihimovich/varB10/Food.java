@@ -1,6 +1,6 @@
 package bsu.rfe.java.group7.lab1.Lihimovich.varB10;
 
-public abstract class Food implements Consumable,Nutritious {
+public class Food implements Consumable,Nutritious {
     String name = null;
     public Food(String name) {
         this.name = name;
@@ -20,4 +20,6 @@ public abstract class Food implements Consumable,Nutritious {
         this.name = name;
     }
 
+    public void consume() {}
+    public int calculateCalories() {return 0;}
 }

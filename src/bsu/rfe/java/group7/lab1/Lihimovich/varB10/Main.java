@@ -38,33 +38,35 @@ public class Main {
                 item.consume();
             else
                 break;
+
         if (calories_needed) {
             int calories = 0;
             for (int i = 0; i < itemsSoFar; i++)
                 calories += breakfast[i].calculateCalories();
             System.out.println("\nОбщая калорийность завтрака: " + calories + "ккал");
         }
+
         if(sort_needed) {
             Arrays.sort(breakfast, new Comparator() {
                 public int compare(Object f1, Object f2) {
+
                     if(f1 instanceof  Limonad && f2 instanceof Limonad){
-                        if (f1==null) return 1;
-                        if (f2==null) return -1;
                         return ((Limonad)f1).getTaste().compareTo(((Limonad)f2).getTaste());
-                    }if(f1 instanceof  Limonad && f2 instanceof Apple){
-                        if (f1==null) return 1;
-                        if (f2==null) return -1;
-                        return ((Limonad)f1).getTaste().compareTo(((Apple)f2).getSize());
-                    }if(f1 instanceof  Apple && f2 instanceof Apple){
-                        if (f1==null) return 1;
-                        if (f2==null) return -1;
+                    }
+                    if(f1 instanceof  Apple && f2 instanceof Apple){
                         return ((Apple)f1).getSize().compareTo(((Apple)f2).getSize());
                     }
-                    return -1;
+                    if(f1 instanceof  Limonad && f2 instanceof Apple){
+                        return ((Limonad)f1).getTaste().compareTo(((Apple)f2).getSize());
+                    }
+                    if(f1 instanceof  Apple && f2 instanceof Limonad){
+                        return ((Apple)f1).getSize().compareTo(((Limonad)f2).getTaste());}
+                    if(f1 instanceof Cheese || f2 instanceof Cheese) return -1;
+                    return 0;
                 }
             });
         }
-
+        
         System.out.println("\nКол-во яблок:" + " " + appleN);
         System.out.println("Кол-во сыров:" + " " + cheeseN);
         System.out.println("Кол-во лимоннадов:" + " " + LimanadN);
