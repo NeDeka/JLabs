@@ -150,6 +150,7 @@ minY
         canvas.setColor(oldColor);
         canvas.setStroke(oldStroke);
     }
+
     // Отрисовка графика по прочитанным координатам
     protected void paintGraphics(Graphics2D canvas) {
 // Выбрать линию для рисования графика
@@ -183,24 +184,25 @@ minY
 // Шаг 1 - Установить специальное перо для черчения контуров маркеров
         canvas.setStroke(markerStroke);
 // Выбрать красный цвета для контуров маркеров
-        canvas.setColor(Color.RED);
+        canvas.setColor(Color.BLACK);
 // Выбрать красный цвет для закрашивания маркеров внутри
-        canvas.setPaint(Color.RED);
+        canvas.setPaint(Color.BLACK);
 // Шаг 2 - Организовать цикл по всем точкам графика
         for (Double[] point: graphicsData) {
-// Инициализировать эллипс как объект для представления маркера
-            Ellipse2D.Double marker = new Ellipse2D.Double();
-/* Эллипс будет задаваться посредством указания координат
-его центра
-и угла прямоугольника, в который он вписан */
-// Центр - в точке (x,y)
+            GeneralPath marker = new GeneralPath();
             Point2D.Double center = xyToPoint(point[0], point[1]);
-// Угол прямоугольника - отстоит на расстоянии (3,3)
-            Point2D.Double corner = shiftPoint(center, 3, 3);
-// Задать эллипс по центру и диагонали
-            marker.setFrameFromCenter(center, corner);
-            canvas.draw(marker); // Начертить контур маркера
-            canvas.fill(marker); // Залить внутреннюю область маркера
+            //рисуем прямоугльник
+            marker.moveTo(center.x-5.5, center.y+5.5);
+            marker.lineTo(center.x+5.5, center.y+5.5);
+            marker.lineTo(center.x+5.5, center.y-5.5);
+            marker.lineTo(center.x-5.5, center.y-5.5);
+            marker.lineTo(center.x-5.5, center.y+5.5);
+            //рисуем диогонали прямоугольника
+            marker.lineTo(center.x+5.5, center.y -5.5);
+            marker.moveTo(center.x+5.5, center.y+5.5);
+            marker.lineTo(center.x-5.5, center.y-5.5);
+            //конченый маркер
+            canvas.draw(marker);
         }
     }
 
