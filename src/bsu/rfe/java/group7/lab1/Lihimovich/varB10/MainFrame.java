@@ -25,26 +25,36 @@ public class MainFrame extends JFrame {
     private static final int HEIGHT = 600;
 // Объект диалогового окна для выбора файлов
     private JFileChooser fileChooser = null;
+
     // Пункты меню
     private JCheckBoxMenuItem showAxisMenuItem;
     private JCheckBoxMenuItem showMarkersMenuItem;
+    private JCheckBoxMenuItem showAxisSegmentsMenuItem;
+
     // Компонент-отображатель графика
     private GraphicsDisplay display = new GraphicsDisplay();
+
     // Флаг, указывающий на загруженность данных графика
     private boolean fileLoaded = false;
+
     public MainFrame() {
 // Вызов конструктора предка Frame
         super("Построение графиков функций на основе заранее подготовленных файлов");
+
 // Установка размеров окна
         setSize(WIDTH, HEIGHT);
         Toolkit kit = Toolkit.getDefaultToolkit();
+
 // Отцентрировать окно приложения на экране
         setLocation((kit.getScreenSize().width - WIDTH)/2, (kit.getScreenSize().height - HEIGHT)/2);
+
 // Развѐртывание окна на весь экран
         setExtendedState(MAXIMIZED_BOTH);
+
 // Создать и установить полосу меню
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
+
 // Добавить пункт меню "Файл"
         JMenu fileMenu = new JMenu("Файл");
         menuBar.add(fileMenu);
@@ -59,6 +69,7 @@ public class MainFrame extends JFrame {
             if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) openGraphics(fileChooser.getSelectedFile());
         }
     };
+
 // Добавить соответствующий элемент меню
         fileMenu.add(openGraphicsAction);
 
@@ -73,7 +84,7 @@ public class MainFrame extends JFrame {
 // showAxisMenuItem отмечен флажком, и ложь - в противном случае
              display.setShowAxis(showAxisMenuItem.isSelected());
             }
-};
+        };
         showAxisMenuItem = new JCheckBoxMenuItem(showAxisAction);
         graphicsMenu.add(showAxisMenuItem);
         // Элемент по умолчанию включен (отмечен флажком)
@@ -90,9 +101,18 @@ public class MainFrame extends JFrame {
 // Элемент по умолчанию включен (отмечен флажком)
         showMarkersMenuItem.setSelected(true);
 
+        Action showAxisSegmentsAction = new AbstractAction("Показывать деления") {
+            public void actionPerformed(ActionEvent event) {
+                display.setShowAxisSegments(showAxisSegmentsMenuItem.isSelected());
+            }
+        };
+        showAxisSegmentsMenuItem = new JCheckBoxMenuItem(showAxisSegmentsAction);
+        graphicsMenu.add(showAxisSegmentsMenuItem);
+        showAxisSegmentsMenuItem.setSelected(true);
+
+
 // Зарегистрировать обработчик событий, связанных с меню "График"
         graphicsMenu.addMenuListener(new GraphicsMenuListener());
-
 // Установить GraphicsDisplay в цент граничной компоновки
         getContentPane().add(display, BorderLayout.CENTER);
     }
@@ -141,19 +161,20 @@ Double.SIZE/8 байт;
         return;
         }
     }
-public static void main(String[] args) {
+    public static void main(String[] args) {
 // Создать и показать экземпляр главного окна приложения
         MainFrame frame = new MainFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         }
 // Класс-слушатель событий, связанных с отображением меню
-private class GraphicsMenuListener implements MenuListener {
+    private class GraphicsMenuListener implements MenuListener {
 // Обработчик, вызываемый перед показом меню
     public void menuSelected(MenuEvent e) {
 // Доступность или недоступность элементов меню "График" определяется загруженностью данных
         showAxisMenuItem.setEnabled(fileLoaded);
         showMarkersMenuItem.setEnabled(fileLoaded);
+        showAxisSegmentsMenuItem.setEnabled(fileLoaded);
     }
 // Обработчик, вызываемый после того, как меню исчезло с экрана
     public void menuDeselected(MenuEvent e) {}
