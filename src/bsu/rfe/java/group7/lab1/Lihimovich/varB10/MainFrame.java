@@ -173,6 +173,7 @@ public class MainFrame extends JFrame {
         hboxResultat.add(textFieldResult);
         hboxResultat.add(Box.createHorizontalGlue());
 
+// Создание поля mem
         JLabel labelForMem = new JLabel("mem:");
         textFieldMem = new JTextField("0", 15);
         textFieldMem.setMaximumSize(textFieldMem.getPreferredSize());
@@ -183,6 +184,7 @@ public class MainFrame extends JFrame {
         hboxResMem.add(textFieldMem);
         hboxResMem.add(Box.createHorizontalGlue());
 
+// Обьеденение Result и mem в вертикальный бокс
         Box hboxResult = Box.createVerticalBox();
         hboxResult.add(Box.createVerticalGlue());
         hboxResult.add(hboxResultat);
@@ -190,7 +192,7 @@ public class MainFrame extends JFrame {
         hboxResult.add(Box.createVerticalGlue());
         //hboxResult.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-
+// Создание горизонтальной коробки с полями X/Y/Z и Result/mem
         Box hboxRes = Box.createHorizontalBox();
         hboxRes.add(Box.createHorizontalGlue());
         hboxRes.add(hboxVariables);
@@ -198,7 +200,7 @@ public class MainFrame extends JFrame {
         hboxRes.add(hboxResult);
         hboxRes.add(Box.createHorizontalGlue());
 
-// Создать область для кнопок
+// Кнопка Вычислить
         JButton buttonCalc = new JButton("Вычислить");
         buttonCalc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -217,7 +219,7 @@ public class MainFrame extends JFrame {
                 }
             }
         });
-
+// Кнопка сброса
         JButton buttonReset = new JButton("Очистить поля");
         buttonReset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -227,7 +229,7 @@ public class MainFrame extends JFrame {
                 textFieldResult.setText("0");
             }
         });
-
+// Кнопка M+ (добавление результату в память)
         JButton buttonM = new JButton("M+");
         buttonM.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -251,7 +253,7 @@ public class MainFrame extends JFrame {
                 }
             }
         });
-
+// Кнопка MC(Очистка памяти)
         JButton buttonMC = new JButton("MC");
         buttonMC.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
