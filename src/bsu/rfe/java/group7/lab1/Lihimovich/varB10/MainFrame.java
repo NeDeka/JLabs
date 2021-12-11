@@ -75,7 +75,7 @@ public class MainFrame extends JFrame {
         menuBar.add(tableMenu);
         JMenu referenceMenu = new JMenu("Справка");
         menuBar.add(referenceMenu);
-
+//Создание кнопки Сохранить в текстовый файл в меню
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser==null) {
@@ -88,7 +88,7 @@ public class MainFrame extends JFrame {
         };
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
-
+//Создание кнопки Сохранить данные для построения графика в меню
         Action saveToGraphicsAction = new AbstractAction("Сохранить данные для построения графика") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser==null) {
@@ -101,7 +101,7 @@ public class MainFrame extends JFrame {
         };
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
         saveToGraphicsMenuItem.setEnabled(false);
-
+//Создание кнопки Найти значение многочлена в меню
         Action searchValueAction = new AbstractAction("Найти значение многочлена") {
             public void actionPerformed(ActionEvent event) {
                 String value = JOptionPane.showInputDialog(MainFrame.this, "Введите значение для поиска", "Поиск значения", JOptionPane.QUESTION_MESSAGE);
@@ -111,7 +111,7 @@ public class MainFrame extends JFrame {
         };
         searchValueMenuItem = tableMenu.add(searchValueAction);
         searchValueMenuItem.setEnabled(false);
-
+// Создать кнопку О программе
         Action aboutProgramAction = new AbstractAction("О программе") {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(MainFrame.this, "Лихимович 7 группа");
@@ -208,7 +208,7 @@ public class MainFrame extends JFrame {
             }
         });
 
-
+// Обьеденение кнопок Вычислмть и Очистить поле в горизонтальный бокс
         Box hboxButtons = Box.createHorizontalBox();
         hboxButtons.setBorder(BorderFactory.createBevelBorder(1));
         hboxButtons.add(Box.createHorizontalGlue());
