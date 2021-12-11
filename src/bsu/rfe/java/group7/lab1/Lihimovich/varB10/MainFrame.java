@@ -193,9 +193,9 @@ public class MainFrame extends JFrame {
 
         Box hboxRes = Box.createHorizontalBox();
         hboxRes.add(Box.createHorizontalGlue());
-        hboxRes.add(hboxResult);
-        hboxRes.add(Box.createHorizontalStrut(20));
         hboxRes.add(hboxVariables);
+        hboxRes.add(Box.createHorizontalStrut(20));
+        hboxRes.add(hboxResult);
         hboxRes.add(Box.createHorizontalGlue());
 
 // Создать область для кнопок
