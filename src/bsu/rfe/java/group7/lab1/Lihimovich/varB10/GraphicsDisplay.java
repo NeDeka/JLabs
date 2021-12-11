@@ -46,7 +46,7 @@ public class GraphicsDisplay extends JPanel{
         setBackground(Color.WHITE);
 // Сконструировать необходимые объекты, используемые в рисовании
 // Перо для рисования графика
-        graphicsStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[]{4,1,1,1}, 0.0f);
+        graphicsStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[]{10,10}, 0.0f);
 // Перо для рисования осей координат
         axisStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
 // Перо для рисования контуров маркеров
@@ -114,21 +114,10 @@ public class GraphicsDisplay extends JPanel{
 
 // Шаг 5 - Чтобы изображение было неискажѐнным - масштаб должен быть одинаков
 // Выбираем за основу минимальный
-        scale = Math.min(scaleX, scaleY);
+          scale = Math.min(scaleX, scaleY);
 
 // Шаг 6 - корректировка границ отображаемой области согласно выбранному масштабу
         if (scale==scaleX) {
-/* Если за основу был взят масштаб по оси X, значит по оси Y
-делений меньше,
-* т.е. подлежащий визуализации диапазон по Y будет меньше
-высоты окна.
-* Значит необходимо добавить делений, сделаем это так:
-* 1) Вычислим, сколько делений влезет по Y при выбранном
-масштабе - getSize().getHeight()/scale
-* 2) Вычтем из этого сколько делений требовалось изначально
-* 3) Набросим по половине недостающего расстояния на maxY и
-minY
-*/
             double yIncrement = (getSize().getHeight()/scale - (maxY - minY))/2;
             maxY += yIncrement;
             minY -= yIncrement;

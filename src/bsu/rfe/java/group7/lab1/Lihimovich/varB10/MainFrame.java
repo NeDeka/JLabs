@@ -108,7 +108,7 @@ public class MainFrame extends JFrame {
         };
         showAxisSegmentsMenuItem = new JCheckBoxMenuItem(showAxisSegmentsAction);
         graphicsMenu.add(showAxisSegmentsMenuItem);
-        showAxisSegmentsMenuItem.setSelected(true);
+        showAxisSegmentsMenuItem.setSelected(false);
 
 
 // Зарегистрировать обработчик событий, связанных с меню "График"
