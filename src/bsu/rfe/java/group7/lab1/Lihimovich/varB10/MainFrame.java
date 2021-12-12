@@ -1,7 +1,5 @@
 package bsu.rfe.java.group7.lab1.Lihimovich.varB10;
 
-package bsu.rfe.java.group7.lab1.Lihimovich.varB10;
-
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
